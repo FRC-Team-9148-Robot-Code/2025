@@ -6,11 +6,14 @@ package frc.robot;
 
 import frc.robot.Constants.MotorBasedConstants;
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.AutoRoutines;
 import frc.robot.commands.MotorBasedCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.MotorBasedSubsystem;
 import frc.robot.subsystems.PneumaticBasedSubsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -28,12 +31,21 @@ public class RobotContainer {
   CommandXboxController operatorController = new CommandXboxController(OperatorConstants.OPERATOR_CONTROLLER_PORT);
   MotorBasedSubsystem motorBasedSubsystem = new MotorBasedSubsystem();
   PneumaticBasedSubsystem pneumaticBasedSubsystem = new PneumaticBasedSubsystem();
+
+  Command driveStraightAuto = drivetrain.driveCommand(() -> 0.4, () -> 0.4).withTimeout(3);
+  SendableChooser<Command> autoChooser = new SendableChooser<>();
+  AutoRoutines autoRoutines = new AutoRoutines(drivetrain, motorBasedSubsystem, pneumaticBasedSubsystem);
   
   public RobotContainer() {
     drivetrain.setDefaultCommand(drivetrain.driveCommand(
       driverController::getLeftY, 
       driverController::getRightY
     ));
+
+    autoChooser.setDefaultOption("Drive Straight", driveStraightAuto);
+    autoChooser.addOption("Pneumatic & Exit", autoRoutines.pneumaticSequenceAndExit());
+    Shuffleboard.getTab("Auto Routine Selector").add(autoChooser);
+
     // Configure the trigger bindings
     configureBindings();
   }
@@ -60,6 +72,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return null;
+    return autoChooser.getSelected();
   }
 }
