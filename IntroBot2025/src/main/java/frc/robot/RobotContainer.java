@@ -38,8 +38,7 @@ public class RobotContainer {
   
   public RobotContainer() {
     drivetrain.setDefaultCommand(drivetrain.driveCommand(
-      driverController::getLeftY, 
-      driverController::getRightY
+      driverController::getLeftY, driverController::getRightY
     ));
 
     autoChooser.setDefaultOption("Drive Straight", driveStraightAuto);
