@@ -1,6 +1,6 @@
 plugins {
     id "java"
-    id "edu.wpi.first.GradleRIO" version "2025.1.1-beta-3"
+    id "edu.wpi.first.GradleRIO" version "2025.3.1"
 }
 
 java {
@@ -55,6 +55,8 @@ dependencies {
     annotationProcessor wpi.java.deps.wpilibAnnotations()
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
+    // Implement this if regular REVLib install doesn't work: (jar source: https://maven.revrobotics.com/com/revrobotics/frc/REVLib-java/2025.0.2/REVLib-java-2025.0.2.jar)
+    // implementation files(REVLib-java-2025.0.2.jar)
 
     roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
     roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
