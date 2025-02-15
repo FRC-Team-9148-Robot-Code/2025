@@ -55,7 +55,9 @@ dependencies {
     annotationProcessor wpi.java.deps.wpilibAnnotations()
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
-    // Implement this if regular REVLib install doesn't work: (jar source: https://maven.revrobotics.com/com/revrobotics/frc/REVLib-java/2025.0.2/REVLib-java-2025.0.2.jar)
+    
+    // Implement this if regular REVLib install doesn't work: 
+    // (source: https://github.com/REVrobotics/REV-Software-Binaries/releases)
     // implementation files(REVLib-java-2025.0.2.jar)
     // implementation files(REVLibDriver.dll)
     // implementation files(REVLibDriver.lib)
