@@ -56,12 +56,12 @@ dependencies {
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
     
-    // Implement this if regular REVLib install doesn't work: 
-    // (source: https://github.com/REVrobotics/REV-Software-Binaries/releases)
+    // Implement this if regular REVLib install doesn't work
+    // (source: https://github.com/REVrobotics/REV-Software-Binaries/releases):
     // implementation files(REVLib-java-2025.0.2.jar)
-    // implementation files(REVLibDriver.dll)
-    // implementation files(REVLibDriver.lib)
-    // implementation files(REVLibDriver.pdb)
+    // roborioDebug files("REVLib-driver-2025.0.2-linuxathena.zip")
+    // roborioRelease files("REVLib-driver-2025.0.2-linuxathena.zip")
+    // nativeDebug files("REVLib-driver-2025.0.2-linuxathena.zip")
 
     roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
     roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
